@@ -1,0 +1,12 @@
+require 'json'
+require 'yaml'
+configfile = File.read("config.json")
+machines = JSON.parse(configfile)
+machines.each do |mach|
+print mach
+end
+print "\n\n\n"
+machines2 = YAML.load_file("blconfig.yml")
+machines2.each do |mach|
+print mach
+end

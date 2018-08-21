@@ -1,0 +1,3 @@
+require 'json'
+machines = JSON.parse("config.json")
+

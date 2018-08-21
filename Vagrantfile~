@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+require 'yaml'
+machines = YAML.load_file("config.yml")
+Vagrant.configure("2") do |config|
+  machines.each do |machine|
+    config.vm.define machine['name'] do |machine_vm|
+      set_box(machine, machine_vm)
+      hardware_setup(machine, machine_vm)
+      ip_setup(machine, machine_vm)
+      script_handler(machine, machine_vm)
+      setup_port(machine, machine_vm)
+      setup_shared_folder(machine, machine_vm)
+    end
+  end
+end
+
+def set_box(machine, machine_vm)
+   machine_vm.vm.box = machine['box']
+end
+
+def hardware_setup(machine, machine_vm)  
+  machine_vm.vm.provider "virtualbox" do |vb|
+    vb.cpus = machine['cpus']
+    vb.memory = machine['memory']
+  end
+end
+
+def ip_setup(machine, machine_vm)
+  machine_vm.vm.network "private_network", ip: machine['private_ip']
+end
+
+def script_handler(machine, machine_vm)  
+  unless machine['scripts'].nil?
+    machine['scripts'].each do |script|
+      machine_vm.vm.provision "shell", privileged: false, path: "vagrant_scripts/#{script}"
+    end
+  end
+end
+
+def setup_port(machine, machine_vm)
+  unless machine['portto'].nil?
+    machine_vm.vm.network "forwarded_port", guest: machine['portfrom'], host: machine['portto']
+  end
+end
+
+def setup_shared_folder(machine, machine_vm)
+  unless machine['sharedfolder'].nil?
+    machine.vm.synced_folder machine['sharedfolder'], "/home/hostshare"
+  end
+end
+

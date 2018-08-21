@@ -1,0 +1,25 @@
+[
+    {
+	"name"        : "jenkins",
+	"box"         : "centos/7",
+	"cpus"        : 2,
+	"memory"      : 1024,
+	"private_ip"  : "10.0.10.12",
+	"scripts"     : [],
+	"portfrom"    : 9000, 
+	"portsto"     : 9000,
+	"sharedfolder": "./jenkinsshare"
+    },
+
+    {
+	"name"        : "server",
+	"box"         : "centos/7",
+	"cpus"        : 1,
+	"memory"      : 1024,
+	"private_ip"  : "10.0.10.13",
+	"scripts"     : [],
+	"portfrom"    : 9000,
+	"portsto"     : 9001,
+	"sharedfolder": "./servershare"
+    }
+]
