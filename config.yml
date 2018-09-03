@@ -23,4 +23,15 @@
   portsfrom: 9000
   portsto: 8999
   sharedfolder: './servershare'
+  
+- name: 'docker'
+  box:  'centos/7'
+  cpus: 2
+  memory: 1024
+  private_ip: 10.0.10.14
+  scripts:
+  - install_docker
+  portsfrom: 9000
+  portsto: 8999
+  sharedfolder: './servershare'
 ---

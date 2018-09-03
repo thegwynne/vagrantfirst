@@ -5,10 +5,11 @@
 	"cpus"        : 2,
 	"memory"      : 1024,
 	"private_ip"  : "10.0.10.12",
-	"scripts"     : [],
+	"scripts"     : ["add_jenkins"],
 	"portfrom"    : 9000, 
 	"portsto"     : 9000,
-	"sharedfolder": "./jenkinsshare"
+	"sharedfolder": "./jenkinsshare",
+	"package_manager": "yum"
     },
 
     {
@@ -20,6 +21,7 @@
 	"scripts"     : ["install_server"],
 	"portfrom"    : 9000,
 	"portsto"     : 9001,
-	"sharedfolder": "./servershare"
+	"sharedfolder": "./servershare",
+	"package_manager": "yum"
     }
 ]

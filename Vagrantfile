@@ -88,25 +88,25 @@ def setup_shared_folder(machine, machine_vm)
 end
 
 
-#def update_with_package_manager(machine, machine_vm)
-#  unless machine['package_manager'].nil?
-#    machine_vm.vm.provision "shell", inline: "sudo #{machine['package_manager']#} update -y"
-#    if machine['package_manager'] == "apt"
-#      machine_vm.vm.provision "shell", inline: "sudo #{machine['package_manager#']} upgrade -y"
-#    end
-#  end
-#end
-#
-#def install_packages(machine, machine_vm)
-#  unless machine['packages'].nil?
-#    if machine['package_manager'] == "apk"
-#      machine_vm.vm.provision "shell", inline: <<-SHELL
- #       sudo #{machine['package_manager']} add #{machine['packages  '].join(" ")}
-#	                        		SHELL
-#    else
-#      machine_vm.vm.provision "shell", inline: <<-SHELL
-#        sudo #{machine['package_manager']} install -y #{machine['packages'].joi#n(" ")}#
-#			SHELL
-#    end
-#  end
-#end
+def update_with_package_manager(machine, machine_vm)
+  unless machine['package_manager'].nil?
+    machine_vm.vm.provision "shell", inline: "sudo #{machine['package_manager']} update -y"
+    if machine['package_manager'] == "apt"
+      machine_vm.vm.provision "shell", inline: "sudo #{machine['package_manager']} upgrade -y"
+    end
+  end
+end
+
+def install_packages(machine, machine_vm)
+  unless machine['packages'].nil?
+    if machine['package_manager'] == "apk"
+      machine_vm.vm.provision "shell", inline: <<-SHELL
+        sudo #{machine['package_manager']} add #{machine['packages  '].join(" ")}
+	                        		SHELL
+    else
+      machine_vm.vm.provision "shell", inline: <<-SHELL
+        sudo #{machine['package_manager']} install -y #{machine['packages'].join(" ")}
+			SHELL
+    end
+  end
+end

@@ -7,3 +7,4 @@ cd python-systemd-http-server
 sudo make install
 sudo systemctl start python-systemd-http-server
 sudo systemctl enable python-systemd-http-server
+touch complete.txt
